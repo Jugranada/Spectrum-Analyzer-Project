@@ -1,25 +1,45 @@
-# Backend
+# 📘 Módulo Backend – Proyecto: Spectrum Monitoring Platform
 
-The **Backend** is the brain for the [Cheapest Spectrum Sensing Project](https://github.com/dramirezbe/CheapestSpectrumSensingProject.git), providing an API REST endpoints for the streaming, audio demodulation, and visualization of radio spectrum data.
+## 🛰️ Descripción General
+
+El **Módulo Backend** es la capa central de la plataforma. Su función es coordinar, almacenar, procesar y servir toda la información proveniente de los sensores distribuidos.
+
+Este módulo está construido con **FASTAPI** y provee:
+
+- API REST para comunicación con los sensores (Run Server).
+- API REST para visualización, consulta y configuración desde UI web.
+- Gestión de configuraciones remotas para cada sensor.
+- Recepción y almacenamiento de PSDs publicadas por los sensores.
+- Registro de eventos, métricas y estados.
+- Servidor central que integra la red completa de sensores ANE.
 
 ---
 
-### ⚙️ **Technology Stack**
+## 🧩 Arquitectura General
 
-This API is built using a modern Python stack:
-
-* **Framework:** fastAPI
-* **Build Tool:** PyInstaller
-* **Signal Processing:** Numpy, Scipy
-
----
-
-### 🚀 **Usage**
-
-Ensure you are in the `backend/` directory for all commands.
-
-
-```bash
-# Run the API
-fastapi dev src/main.py
-```
+```text
+ ┌───────────────────────────────┐
+ │         UI Web / Cliente       │
+ │       (Dashboard ANE)          │
+ └──────────────┬────────────────┘
+                │ REST (JSON)
+                ▼
+      ┌──────────────────────────────┐
+      │        Backend FASTAPI       │
+      │  - /configuration/{mac}      │
+      │  - /data                     │
+      │  - /status                   │
+      │  - /sensors                  │
+      └──────────────┬──────────────┘
+                     │ REST (JSON)
+                     ▼
+           ┌──────────────────────┐
+           │      Run Server      │
+           │       (Python)       │
+           └───────────┬─────────┘
+                       │ ZMQ "acquire" / "data"
+                       ▼
+           ┌──────────────────────┐
+           │   Orquestador (C)    │
+           │ Captura + PSD Welch  │
+           └──────────────────────┘
