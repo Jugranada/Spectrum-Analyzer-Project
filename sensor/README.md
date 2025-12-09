@@ -11,7 +11,7 @@ This component is designed to run with the following hardware stack:
 
 * **Compute:** Raspberry Pi 5
 * **SDR:** HackRF One
-* **Connectivity:** LTE/GPS Module (4G)
+* **Connectivity:** Wifi/Ethernet
 * **RF Switching:** Antenna Multiplexer (4 ports)
 * **Antennas:** FM Antenna, 2.4GHz Antenna
 
