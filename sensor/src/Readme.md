@@ -90,6 +90,7 @@ El Orquestador escucha comandos desde el Run Server:
 zsub_init("acquire", handle_psd_message);
 
 Formato del comando recibido:
+```text
 
 {
   "center_freq": 98000000,
@@ -103,7 +104,7 @@ Formato del comando recibido:
   "vga_gain": 32,
   "amp_enabled": false
 }
-
+```
 ---
 
 ## 1.3 Proceso de Adquisición y DSP
@@ -131,13 +132,15 @@ publish_results(freq, psd, nperseg);
 
 Ejemplo del JSON publicado:
 
+```text
+
 {
   "start_freq_hz": 88000000,
   "end_freq_hz": 108000000,
   "bin_count": 4096,
   "Pxx": [-120.5, -115.3, ...]
 }
-
+```
 ---
 
 # 2. Run Server (Python)
@@ -162,6 +165,7 @@ El Run Server actúa como puente entre:
 ## 3.1 GET /configuration/{mac}
 
 Ejemplo de respuesta:
+```text
 
 {
   "center_freq": 91500000,
@@ -175,12 +179,13 @@ Ejemplo de respuesta:
   "vga_gain": 32,
   "amp_enabled": false
 }
-
+```
 El Run Server reenvía este JSON al Orquestador por ZMQ (acquire).
 
 ---
 
 ## 3.2 POST /data
+```text
 
 {
   "start_freq_hz": 88000000,
@@ -189,7 +194,8 @@ El Run Server reenvía este JSON al Orquestador por ZMQ (acquire).
   "timestamp": "2025-01-21T12:30:12.120",
   "Pxx": [-120.5, -119.0, ...]
 }
-
+```
 Respuesta esperada del Backend:
+```text
 
 { "status": "ok" }
