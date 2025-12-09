@@ -134,6 +134,8 @@ monitorear de forma distribuida bandas de RF mediante una red de sensores que:
 
 - Canvas 2D para la PSD
 
+- React
+
 ## 🔄 Ciclo de actualización
 
 Cada 1 segundo:
