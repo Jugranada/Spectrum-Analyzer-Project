@@ -45,7 +45,8 @@ El módulo está compuesto por dos capas:
 │ - Métricas CPU/RAM/disco                                  │
 └──────────────────────────────────────────────────────────┘
 
-```text
+```
+
 
 ## ⚙️ Flujo Completo del Sensor
 
