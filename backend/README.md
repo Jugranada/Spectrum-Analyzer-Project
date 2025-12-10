@@ -24,12 +24,12 @@ Este módulo está construido con **FASTAPI** y provee:
  └──────────────┬────────────────┘
                 │ REST (JSON)
                 ▼
-      ┌──────────────────────────────┐
-      │        Backend FASTAPI       │
-      │  - /configuration/{mac}      │
-      │  - /data                     │
-      │  - /status                   │
-      │  - /sensors                  │
+      ┌─────────────────────────────┐
+      │        Backend FASTAPI      │
+      │  - /{mac}/realtime          │
+      │  - {mac}/data               │
+      │  - /status                  │
+      │  - /sensors                 │
       └──────────────┬──────────────┘
                      │ REST (JSON)
                      ▼
@@ -87,7 +87,7 @@ Notifica al dashboard si aplica.
 
 # 1. Endpoints Principales
 
-## 1.1 GET /configuration/{mac}
+## 1.1 GET /{mac}/realtime
 El sensor consulta su configuración actual.
 
 Ejemplo de respuesta:
