@@ -98,7 +98,7 @@ Formato del comando recibido:
   "rbw": 5000,
   "sample_rate": 20000000,
   "overlap": 0.5,
-  "window_type": 2,
+  "window_type": "hamming",
   "scale": "dBm",
   "lna_gain": 16,
   "vga_gain": 32,
@@ -137,7 +137,7 @@ Ejemplo del JSON publicado:
 {
   "start_freq_hz": 88000000,
   "end_freq_hz": 108000000,
-  "bin_count": 4096,
+  "center_freq": 98000000,
   "Pxx": [-120.5, -115.3, ...]
 }
 ```
@@ -152,17 +152,17 @@ El Run Server actúa como puente entre:
 
 ## 2.1 Responsabilidades del Run Server
 
-- Consultar al Backend por configuración → GET /configuration/{mac}  
+- Consultar al Backend por configuración → GET /{mac} / realtime
 - Enviar esa configuración al Orquestador → ZMQ "acquire"  
 - Recibir PSD procesada desde el Orquestador → ZMQ "data"  
-- Enviar PSD al Backend → POST /data  
+- Enviar PSD al Backend → POST /{mac}data  
 - Manejar errores y estado del sensor  
 
 ---
 
 # 3. API entre Run Server ↔ Backend FASTAPI
 
-## 3.1 GET /configuration/{mac}
+## 3.1 GET /{mac}/realtime
 
 Ejemplo de respuesta:
 ```text
